@@ -8,7 +8,7 @@ const Footer = () => {
   <div className="container-xl">
     <div className="row text-center align-items-center flex-row-reverse">
       <div className="col-lg-auto ms-lg-auto">
-        <ul className="list-inline list-inline-dots mb-0">
+        {/* <ul className="list-inline list-inline-dots mb-0">
           <li className="list-inline-item"><Link href="#" className="link-secondary">Documentation</Link></li>
           <li className="list-inline-item"><Link href="#" className="link-secondary">License</Link></li>
           <li className="list-inline-item"><Link href="#" className="link-secondary">Source code</Link></li>
@@ -20,7 +20,7 @@ const Footer = () => {
               Sponsor
             </Link>
           </li>
-        </ul>
+        </ul> */}
       </div>
       <div className="col-12 col-lg-auto mt-3 mt-lg-0">
         <ul className="list-inline list-inline-dots mb-0">

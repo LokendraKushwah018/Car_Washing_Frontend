@@ -138,7 +138,7 @@ const Dashboard = () => {
       setFullName(article.fullName)
       setID(article.id)
       setEmail(article.email)
-      setNumber(article.phoneNum)
+      setNumber(article.phone_num)
       setAddress(article.address)
       setWing(article.wing)
       setSociety(article.society)
@@ -158,7 +158,7 @@ const Dashboard = () => {
       customerId: ID,
       fullName: fullName,
       email: Email,
-      phoneNum: Number,
+      phone_num: Number,
       address: Address,
       wing: Wing,
       society: Society,
@@ -384,7 +384,7 @@ const Dashboard = () => {
 
               {/* Customer Table Start */}
 
-              <div className="col-12">
+              <div className="col">
                 <div className="card">
                   <div className="card-header">
                     <h3 className="card-title">Customer Data</h3>
@@ -408,29 +408,39 @@ const Dashboard = () => {
               </div> */}
                   <div className="table-responsive scrollit">
                     <table className="table card-table table-vcenter text-nowrap datatable">
-                      <thead>
-                        <tr>
-                           <th />
+                      <thead > 
+                        <tr>                           
                           <th className="w-1">#
                           </th>
-                          <th>User Name</th>
-                          <th><span style={{ marginLeft: '25px' }}>Email</span></th>
-                          <th>Phone No.</th>
-                          <th>Address</th>
-                          <th>Wing</th>
+                          <th className="w-1">Customer Name</th>
+                          {/* <th><span style={{ marginLeft: '25px' }}>Email</span></th>
+                          <th>Phone No.</th> */}
+                          <th className="w-1">Address</th>
+                          {/* <th>Wing</th>
                           <th>Society</th>
                           <th>City</th>
                           <th>State</th>
-                          <th>PinCode</th>
+                          <th>PinCode</th> */}
                           {/* <th><span style={{ marginLeft: '30px' }}>Create Date</span></th> */}
-                         
+                         <th className="w-1"/>
                         </tr>
                       </thead>
                       {user.map((userdata, index) => {
                         return (
                           <tbody key={index}>
-                            <tr> 
-                                <td className="text-end">
+                            <tr>                           
+                              <td><span className="text-muted">{index + 1}</span></td>
+                              <td> {userdata.fullName === null ? <b>Null</b> :<div>{/* <span className="flag flag-country-in"/> */} {userdata.fullName} </div>}
+                              <div>{userdata.email === null ? <b>Null</b> : <Link to="#" className="text-reset" tabindex="-1">{userdata.email}</Link>}</div>
+                             <div> {userdata.phone_num === null ? <b>Null</b> : <span>{userdata.phone_num}</span>} </div></td>
+                              <td>{userdata.address === null ? <b>Null</b> : <span> {userdata.address}</span>}
+                             <div> {userdata.wing === null ? <b>Null</b> : <span>{userdata.wing}</span>}</div>
+                              <div>{userdata.society === null ? <b>Null</b> : <span>{userdata.society}</span>}</div>
+                              <div>{userdata.city === null ? <b>Null</b> : <span>{userdata.city}</span>} </div>
+                              <div>{userdata.state === null ? <b>Null</b> : <span>{userdata.state} </span>}, 
+                              {userdata.pincode === null ? <b>Null</b> : <span> {userdata.pincode}</span>}</div></td>
+                              {/* <td>{userdata.creatDate === null ? <b>Null</b> : <span>{userdata.creatDate}</span>} </td> */}
+                                 <td className="text-end">
                                 <span className="dropdown">
                                   <button className="btn dropdown-toggle align-text-top " data-bs-boundary="viewport" 
                                   data-bs-toggle="dropdown" style={{backgroundColor: '#1a48aa' , color:'white'}}  >Actions</button>
@@ -445,18 +455,6 @@ const Dashboard = () => {
                                   </div>
                                 </span>
                               </td>
-                              <td><span className="text-muted">{index + 1}</span></td>
-                              <td> {userdata.fullName === null ? <b>Null</b> :<div>{/* <span className="flag flag-country-in"/> */} {userdata.fullName} </div>}</td>
-                              <td>{userdata.email === null ? <b>Null</b> : <Link to="#" className="text-reset" tabindex="-1">{userdata.email}</Link>}</td>
-                              <td>{userdata.phoneNum === null ? <b>Null</b> : <span>{userdata.phoneNum}</span>} </td>
-                              <td>{userdata.address === null ? <b>Null</b> : <span> {userdata.address}</span>}</td>
-                              <td>{userdata.wing === null ? <b>Null</b> : <span>{userdata.wing}</span>}</td>
-                              <td>{userdata.society === null ? <b>Null</b> : <span>{userdata.society}</span>}</td>
-                              <td>{userdata.city === null ? <b>Null</b> : <span>{userdata.city}</span>} </td>
-                              <td>{userdata.state === null ? <b>Null</b> : <span>{userdata.state} </span>}</td>
-                              <td>{userdata.pincode === null ? <b>Null</b> : <span>{userdata.pincode}</span>}</td>
-                              {/* <td>{userdata.creatDate === null ? <b>Null</b> : <span>{userdata.creatDate}</span>} </td> */}
-                           
                             </tr>
                           </tbody>
                         )
@@ -572,7 +570,7 @@ const Dashboard = () => {
           data: {
             fullName : value.name,
             email: value.email,
-            phoneNum: value.number,
+            phone_num: value.number,
             address: value.address,
             wing: value.wing,
             society: value.society,
@@ -595,8 +593,7 @@ const Dashboard = () => {
             console.log(error);          
           })  
         }}
-        >
-       
+        >       
        {({ errors, touched }) => (
               <Form  noValidate > 
               <div className='row'>
@@ -604,8 +601,7 @@ const Dashboard = () => {
                 <div className="m-2">  
                 <label className="form-label" >User Name</label>
                   <Field type="text" className="form-control" name="name"  />
-                </div>
-               
+                </div>               
                 {errors.name && touched.name ? (
                       <div className="" style={{ color: '#9D0305',fontSize:'14px', margin:'8px' }}>{errors.name}</div>
                     ) : null}
@@ -680,15 +676,13 @@ const Dashboard = () => {
                 </div>
                 {errors.address && touched.address ? (
                       <div className="" style={{ color: '#9D0305',fontSize:'14px',margin:'8px' }}>{errors.address}</div>
-                    ) : null}
-                    
+                    ) : null}                    
                     <div class="d-grid gap-2 col-6 mx-auto">
                 <div className="modal-footer ">
                   <button type="button" className="btn me-auto  text-light " onClick={handleCancel} style={{backgroundColor: '#1a48aa'}}>Close</button>
                   <button type="submit" className="btn me-auto text-light" style={{backgroundColor: '#1a48aa' }} > Add Customer </button>
                 </div>
-                </div>
-                
+                </div>                
               </Form>
        )}
                </Formik>
@@ -771,7 +765,7 @@ const Dashboard = () => {
                 <div class="col-lg-6">
                   <button type="button" className="btn me-auto  w-50" data-bs-dismiss="modal"
                   style={{backgroundColor: '#1a48aa' , color:'white'}}>Close</button>
-                  {getupdatevalidate.fullName === fullName && getupdatevalidate.email === Email && getupdatevalidate.phoneNum === Number &&
+                  {getupdatevalidate.fullName === fullName && getupdatevalidate.email === Email && getupdatevalidate.phone_num === Number &&
                     getupdatevalidate.address === Address && getupdatevalidate.wing === Wing && getupdatevalidate.society === Society &&
                     getupdatevalidate.city === City && getupdatevalidate.state === State && getupdatevalidate.pincode === Pincode ?
                     <span className='not-allowed'><button type="submit" className="btn  w-50" disabled 

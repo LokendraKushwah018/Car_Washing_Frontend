@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, useNavigate} from 'react-router-dom'
-import { IconBellFilled , IconFileDescription, IconHome2 } from '@tabler/icons-react';
+import { IconBellFilled , IconFileDescription, IconHome2, IconLogout } from '@tabler/icons-react';
 import { IconUser } from '@tabler/icons-react';
 import { IconZoomMoney } from '@tabler/icons-react';
 import { useDispatch } from 'react-redux';
@@ -235,6 +235,18 @@ const LogOut = () => {
             </span>
             <span className="nav-link-title">
             My Profile
+            </span>
+          </Link>
+        </li>
+        <li className="nav-item dropdown">
+        <Link className="nav-link " to={LogOut} >
+            <span className="nav-link-icon d-md-none d-lg-inline-block">
+            {/* <i class="fa fa-sign-out" /> */}
+           
+            <IconLogout/>
+            </span>
+            <span className="nav-link-title">
+           LogOut
             </span>
           </Link>
         </li>

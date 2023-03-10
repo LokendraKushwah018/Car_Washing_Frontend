@@ -35,6 +35,7 @@ const Manageserviceproviders = () => {
   const [city, setCity] = useState("")
   const [state, setState] = useState("")
   const [updateValidate, setUpdateValidate] = useState('')
+  const [value , setValue] = useState([])
   // const [Pincode, setPincode] = useState("")
   const [Date, setDate] = useState([])
   const token = useSelector(state => state.admin.adminlogintoken)
@@ -63,13 +64,14 @@ const Manageserviceproviders = () => {
     }).then((response) => {
       console.log(response.data.data);
       setGetdata(response.data.data);
+      setValue(response.data.data)
+      console.log("value" , value);
     }).catch((error) => {
       console.log(error);
     })
   }
 
   const GetbyIDProvider = ( id ) => {
-    // e.preventDefault()
     axios({
       url: `${BASE_URL}service_providers_ById/${id}`,
       method: 'get',
@@ -82,15 +84,15 @@ const Manageserviceproviders = () => {
       setUpdateValidate(response.data.data)
       const getarticle =response.data.data
       setID(getarticle.id)
-      setFullName(getarticle.fullName)
+      setFullName(getarticle.full_name)
       setEmail(getarticle.email)
-      setNumber(getarticle.phoneNum)
+      setNumber(getarticle.phone_num)
       setAddress(getarticle.address)
       setState(getarticle.state)
       setCountry(getarticle.country)
       setCity(getarticle.city)
       setImage(getarticle.image)
-      setDate(getarticle.createDate)
+      setDate(getarticle.created_at)
 
 
     })
@@ -247,9 +249,9 @@ const Manageserviceproviders = () => {
                 </div>              
                 </div>
                 <div className="modal-footer m-2">
-                  <button type="button" className="btn w-50 " onClick={handleCancel}
+                  <button type="button" className="btn  " onClick={handleCancel}
                   style={{backgroundColor: '#1a48aa' , color:'white'}}>Close</button>
-                  <button type="submit" className="btn w-50" /* onClick={handleCancel} */
+                  <button type="submit" className="btn " /* onClick={handleCancel} */
                   style={{backgroundColor: '#1a48aa' , color:'white'}} > Add </button>
                 </div>
               </form>
@@ -306,15 +308,15 @@ const Manageserviceproviders = () => {
               </span>
             </td>        
             <td><span className="text-muted">{index+1}</span></td>
-            <td>{data.fullName}</td>
+            <td> {data.full_name}</td>
             <td><Image src={data.image} alt='...' width={60} height={60}></Image></td>
             <td><Link className="text-reset" tabIndex={-1} >{data.email}</Link> </td>
-            <td>{data.phoneNum} </td>
-            <td> {data.address} </td>
+            <td>{data.phone_num} </td>
+            <td>{data.address} </td>
             <td>{data.city}</td>
             <td>{data.state}</td>
             <td>{data.country}</td>
-            <td>{data.createDate}</td>          
+            <td>{data.created_at}</td>          
           </tr>    
         </tbody>
           )
@@ -445,11 +447,12 @@ const Manageserviceproviders = () => {
                   updateValidate.state === state &&  updateValidate.country === country ? <span className='not-allowed'><button className="btn me-auto text-white " 
                   style={{backgroundColor: '#1a48aa' ,width:'200px'}} disabled> Update </button> </span>: 
                   <button type="submit" className="btn me-auto text-white " 
-                  style={{backgroundColor: '#1a48aa' ,width:'200px'}} > Update </button>}
+                  style={{backgroundColor: '#1a48aa' ,width:'200px'}} data-bs-dismiss="modal" > Update </button>}
                 </div>
                 </div>
                </div>
               </form>
+            
             </div>
           </div>
         </div>
