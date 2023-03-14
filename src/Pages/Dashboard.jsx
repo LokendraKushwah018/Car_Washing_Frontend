@@ -210,15 +210,22 @@ const Dashboard = () => {
       // .max(6, 'password must be max 6 characters')
       .required('Please enter name'),
       number: Yup.string()
-      .min(10, 'mobile number should be 10 digit')
+      .min(10, 'Mobile number should be 10 digit')
+      .max(12, 'Mobile must be max 12 character')
       .required('Required'),
       address: Yup.string().required('Required'),
-      wing: Yup.string().required('Required'),
-      society: Yup.string().required('Required'),
+      wing: Yup.string()
+      .min(4, 'Wing should be minimum 4 character')
+      .required('Required'),
+      society: Yup.string()
+      .min(4, 'Society should be minimum 4 character')
+      .required('Required'),
       city: Yup.string().required('Required'),
       state: Yup.string().required('Required'),
       pin: Yup.string()
-      .max(6, 'password must be 6 characters')
+      .min(6, 'Pincode should be 6 digit')
+      .max(6, 'Pincode must be 6 characters')
+      // .min(6, 'password should be minimum 3 character')
       .required('Required'),
   });
 

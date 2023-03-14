@@ -12,7 +12,7 @@ const AssignTask = () => {
   const [customerVehicle, setCustomerVehicle] = useState([])
   const [prodata, setProdata] = useState([])
   const [schdule , setSchdule] = useState('')
-  // const [user, setUser] = useState('')
+   const [user, setUser] = useState('')
   const [ID , setID] = useState('')
   const tableRef = useRef(null);
 
@@ -30,8 +30,8 @@ const AssignTask = () => {
     setCustomerVehicle(data.data.data)
     // setUser(data.data.data.user_id)
     // console.log(data.data.data[0].user_id)
-    setSchdule(data.data.data.id)
-    console.log(data.data.data[0].id)
+    // setSchdule(data.data.data.id)
+    // console.log(data.data.data[0].id)
 
   }
 
@@ -44,8 +44,8 @@ const AssignTask = () => {
     })
     console.log(pro.data.data);
     setProdata(pro.data.data)
-    setID(pro.data.data.id)
-    console.log(pro.data.data[0].id)
+    // setID(pro.data.data.id)
+    console.log(pro.data.data.id)
 
   }
 
@@ -65,8 +65,8 @@ const AssignTask = () => {
 //   console.log(task)
 // }
 
-const Assigntask = () => {
-  console.log("schdule" , schdule , "ID", ID)
+const Assigntask = (id, id2) => {
+  console.log( "id" , id , "id2" , id2 )
   axios({
     url: `${BASE_URL}assignTask`,
     method: 'post',
@@ -74,8 +74,8 @@ const Assigntask = () => {
       "Authorization": `Bearer ${token}`
     },
     data: {
-      "schedul_id": schdule,
-      "washer_id": ID
+      "schedul_id": id,
+      "washer_id": id2
      
     }
   }).then((Response) => {
@@ -86,9 +86,9 @@ const Assigntask = () => {
 }
 
   useEffect(() => {
-    Task();
+     Task();
      servicedata();
-    Assigntask();
+    // Assigntask();
 
   }, [])
 
@@ -142,7 +142,6 @@ const Assigntask = () => {
                     <table className="table card-table table-vcenter text-nowrap datatable" ref={tableRef}>
                       <thead>
                         <tr>
-
                           <th className="w-1">S No. </th>
                           <th>Location/Address</th>
                           {/* <th>Create Date</th> */}
@@ -155,6 +154,7 @@ const Assigntask = () => {
                           <th>License No.</th>
                           {/* <th>Parking No.</th> */}
                           <th><span style={{marginLeft: '50px'}}>Action</span> </th>
+                          <th/>
                           {/* <th> Download </th> */}
                         </tr>
                       </thead>
@@ -162,7 +162,6 @@ const Assigntask = () => {
                         return (
                           <tbody key={index}>
                             <tr >
-
                               <td><span className="text-muted">{index + 1}</span></td>
                               <td>{assign.address}</td>
                               {/* <td>{assign.createDate}</td> */}
@@ -188,39 +187,23 @@ const Assigntask = () => {
                 })} 
                 </div>
               </span>  */}   
-                                <select className='btn ' style={{ backgroundColor: '#1a48aa', color: 'white', maxWidth: 'auto' }}>
-                                  <option value='null' >Choose Service Provider</option>
-                                  {prodata.map((datas, index) => {
-                                    return (
-                                      <option value="id" className='bg-white text-dark' >{datas.full_name}
-                                      { console.log(datas.id)}</option> 
+                        <div className="select-container">
+                                   <select className='btn ' onChange={(e) => Assigntask(e.target.value, assign.id)} style={{ backgroundColor: '#1a48aa', color: 'white', maxWidth: 'auto' }}  
+                                /* onClick={() => Assigntask(assign.id)} */  >
+                                  <option>Choose Service Provider</option>
+                                 {prodata.map((datas, index) => {
+                                    return (                                   
+                                      <option value={datas.id}  key={index} className='bg-white text-dark' >
+                                        {datas.full_name}
+                                       </option>                                        
                                     ) 
-
-                                  }
-                                  
-                                  
-                                  )}
-                                 
+                                  }                                  
+                                  )}                                  
                                 </select>
+                                </div>
                               </td>
-                             
-                                {/* <span className="dropdown">
-                <button className="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" 
-                data-bs-toggle="dropdown" style={{backgroundColor: '#1a48aa' , color:'white'}} >Actions</button>
-                <div className="dropdown-menu dropdown-menu-end">
-                               
-                  <DownloadTableExcel className="btn dropdown-toggle align-text-top"
-              filename="Customer Vehicle Description"
-              sheet="Vehicle"
-                currentTableRef={tableRef.current.id}
-            >
-              <button className="dropdown-item" style={{color: '#1a48aa'}}  ><i
-                class="fa fa-download me-2"></i>Export</button>
-            </DownloadTableExcel>
-          
-                </div>
-              </span> */}                             
-                           
+                              <td>                                             
+                          </td> 
                             </tr>
                           </tbody>
                         )

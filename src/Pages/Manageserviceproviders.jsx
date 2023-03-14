@@ -26,7 +26,7 @@ const Manageserviceproviders = () => {
   const [getdata, setGetdata] = useState([])
   // const [getBydata,setGetbydata] = useState({fullName: '', email: '', phoneNum: '', address: '',state: '', country: '', city: ''})
   const [id, setID] = useState([])
-  const [fullName, setFullName] = useState("")
+  const [full_name, setFullName] = useState("")
   const [email, setEmail] = useState("")
   const [phoneNum, setNumber] = useState("")
   const [address, setAddress] = useState("")
@@ -102,7 +102,7 @@ const Manageserviceproviders = () => {
      console.log(id);
     e.preventDefault()
     const formData = new FormData();
-    formData.append("fullName",fullName)
+    formData.append("full_Name",full_name)
     formData.append("email",email)
     formData.append("phoneNum",phoneNum)
     formData.append("address",address)
@@ -193,7 +193,7 @@ const Manageserviceproviders = () => {
           </div>
         </div>
        
-        {/* Create New Report Start */}
+        {/* Create New Service Provider Start */}
 
       <Modal title="Add New Service Providers" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null}  width={700}>
      
@@ -260,7 +260,7 @@ const Manageserviceproviders = () => {
        
       </Modal>
       
-       {/* Create New Report End */}
+       {/* Create New Service Provider End */}
 
         <div class="page-body">
           <div class="container-xl">
@@ -278,7 +278,7 @@ const Manageserviceproviders = () => {
             <th className="w-1">#</th>            
             <th> Name</th>
             <th>&nbsp;&nbsp;&nbsp; Image</th>
-            <th><span style={{marginLeft: '50px'}}>Email ID</span></th>
+            <th><span style={{marginLeft: '30px'}}>Email ID</span></th>
             <th>Contact No.</th>
             <th>Address</th>
             <th>City </th>
@@ -376,7 +376,7 @@ const Manageserviceproviders = () => {
 </div>
 
 
-     {/*Edit Customer Table Modal Start */}
+     {/*Edit Provider Table Modal Start */}
      <div className="modal modal-blur fade" id="modal-simple" tabindex="-1" role="dialog" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div className="modal-content">
@@ -389,7 +389,7 @@ const Manageserviceproviders = () => {
               <div class="col-lg-6">
                 <div className="m-2">
                   <label className="form-label">User Name</label>
-                  <input type="text" className="form-control" name="fullName"  value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                  <input type="text" className="form-control" name="full_name"  value={full_name} onChange={(e) => setFullName(e.target.value)} />
                 </div>
                 </div>
                 <div class="col-lg-6">
@@ -442,7 +442,7 @@ const Manageserviceproviders = () => {
                 <div className="modal-footer">
                 <div class="col-lg-12 ">
                   <button type="button" className="btn me-auto text-white" data-bs-dismiss="modal" style={{backgroundColor: '#1a48aa' , width:'200px'}} >Close</button>                   
-                  {updateValidate.fullName === fullName && updateValidate.email === email && updateValidate.phoneNum === phoneNum &&
+                  {updateValidate.full_name === full_name && updateValidate.email === email && updateValidate.phoneNum === phoneNum &&
                   updateValidate.image === image && updateValidate.address === address && updateValidate.city === city &&  
                   updateValidate.state === state &&  updateValidate.country === country ? <span className='not-allowed'><button className="btn me-auto text-white " 
                   style={{backgroundColor: '#1a48aa' ,width:'200px'}} disabled> Update </button> </span>: 
@@ -456,10 +456,10 @@ const Manageserviceproviders = () => {
             </div>
           </div>
         </div>
-        {/*Edit Customer Table Modal End */}
+        {/*Edit Provider Table Modal End */}
 
 
-              {/*Customer Table Delete Confirmation Modal Start */}
+              {/*Provider Table Delete Confirmation Modal Start */}
               <div className="modal modal-blur fade" id="modal-danger" tabIndex={-1} role="dialog" aria-hidden="true">
           <div className="modal-dialog modal-sm modal-dialog-centered" role="document">
             <div className="modal-content">
@@ -505,7 +505,7 @@ const Manageserviceproviders = () => {
 
 
 
-        {/* Customer Table Delete Confirmation Modal End */}
+        {/* Provider Table Delete Confirmation Modal End */}
              
     </div>
  </Container>
