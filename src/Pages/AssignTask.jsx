@@ -6,13 +6,18 @@ import { useSelector } from 'react-redux'
 import BASE_URL from '../API/Config'
 import Container from '../Component/Container'
 import { DownloadTableExcel } from 'react-export-table-to-excel';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 
+const ServiceProviderToast = () => {
+  toast.success("Assign task Successfully")
+}
 
 const AssignTask = () => {
   const [customerVehicle, setCustomerVehicle] = useState([])
   const [prodata, setProdata] = useState([])
   const [schdule , setSchdule] = useState('')
-   const [user, setUser] = useState('')
+  const [user, setUser] = useState('')
   const [ID , setID] = useState('')
   const tableRef = useRef(null);
 
@@ -65,7 +70,7 @@ const AssignTask = () => {
 //   console.log(task)
 // }
 
-const Assigntask = (id, id2) => {
+const Assigntask = (id, id2 , name ) => {
   console.log( "id" , id , "id2" , id2 )
   axios({
     url: `${BASE_URL}assignTask`,
@@ -79,7 +84,12 @@ const Assigntask = (id, id2) => {
      
     }
   }).then((Response) => {
-    console.log(Response);
+    console.log(Response.status);
+    localStorage.setItem("name" , id2)
+    // setUser(name)
+     if(Response.status){
+      ServiceProviderToast()
+     }
   }).catch((error) => {
     console.log(error);
   })
@@ -94,6 +104,15 @@ const Assigntask = (id, id2) => {
 
   return (
     <Container>
+           <ToastContainer
+    autoClose={1000}
+    position="top-center"
+    hideProgressBar
+    className="toast-container"
+    toastClassName="dark-toast"
+    theme="colored"
+    toastStyle={{ backgroundColor: '#1a48aa' }}
+  />
       <Helmet>
         <meta charSet="utf-8" />
         <title>Assign Task</title>
@@ -188,16 +207,17 @@ const Assigntask = (id, id2) => {
                 </div>
               </span>  */}   
                         <div className="select-container">
-                                   <select className='btn ' onChange={(e) => Assigntask(e.target.value, assign.id)} style={{ backgroundColor: '#1a48aa', color: 'white', maxWidth: 'auto' }}  
-                                /* onClick={() => Assigntask(assign.id)} */  >
+                                   <select className='btn ' onChange={(e) => Assigntask(e.target.value, assign.id , e.target.name )} 
+                                   style={{ backgroundColor: '#1a48aa', color: 'white', maxWidth: 'auto' }} >
                                   <option>Choose Service Provider</option>
                                  {prodata.map((datas, index) => {
                                     return (                                   
-                                      <option value={datas.id}  key={index} className='bg-white text-dark' >
+                                      <option value={datas.id} /* onSelect={(e) => setUser(e.target.name)} */ name={datas.full_name} key={index}  
+                                      className='bg-white text-dark' >
                                         {datas.full_name}
                                        </option>                                        
                                     ) 
-                                  }                                  
+                                  }                                     
                                   )}                                  
                                 </select>
                                 </div>

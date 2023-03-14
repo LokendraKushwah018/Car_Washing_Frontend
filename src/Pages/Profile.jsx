@@ -25,7 +25,7 @@ const Profile = () => {
       console.log(response);
       setgetProfile(response.data.data.name)
       setEmail(response.data.data.email)
-      setDate(response.data.data.createDate)
+      setDate(response.data.data.created_at)
 
     }).catch((error) => {
       console.log(error);
